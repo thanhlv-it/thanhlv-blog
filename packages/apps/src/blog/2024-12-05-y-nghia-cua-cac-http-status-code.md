@@ -70,63 +70,63 @@ Tuy nhiên, có nhiều status code khi browser nhận về, browser sẽ thực
 
 Cùng bắt đầu với các nhóm status code nhé.
 
-| **Mã Trạng Thái** | **Mô Tả Ngắn** | **Vị Trí Trong Tài Liệu** |
-|-------------------|----------------|---------------------------|
-| 100               | Continue - Yêu cầu đã được nhận, client có thể tiếp tục gửi phần thân của yêu cầu. | [Chi tiết](#http-status-code-1xx-informational) |
-| 101               | Switching Protocols - Server đồng ý chuyển đổi giao thức. | [Chi tiết](#http-status-code-1xx-informational) |
-| 102               | Processing - Server đang xử lý yêu cầu nhưng chưa hoàn thành. | [Chi tiết](#http-status-code-1xx-informational) |
-| 103               | Early Hints - Gợi ý tài nguyên để tải trước mà chưa có kết quả chính thức. | [Chi tiết](#http-status-code-1xx-informational) |
-| 200               | OK - Yêu cầu đã thành công. | [Chi tiết](#http-status-code-2xx-success) |
-| 201               | Created - Yêu cầu đã thành công và một tài nguyên mới đã được tạo ra. | [Chi tiết](#http-status-code-2xx-success) |
-| 202               | Accepted - Yêu cầu đã được chấp nhận để xử lý, nhưng chưa hoàn thành. | [Chi tiết](#http-status-code-2xx-success) |
-| 203               | Non-Authoritative Information - Thông tin trả về không trực tiếp từ server gốc. | [Chi tiết](#http-status-code-2xx-success) |
-| 204               | No Content - Yêu cầu thành công nhưng không có nội dung nào để trả về. | [Chi tiết](#http-status-code-2xx-success) |
-| 205               | Reset Content - Yêu cầu thành công nhưng cần reset form nhập liệu. | [Chi tiết](#http-status-code-2xx-success) |
-| 206               | Partial Content - Server chỉ gửi một phần của tài nguyên. | [Chi tiết](#http-status-code-2xx-success) |
-| 207               | Multi-Status - Trả về nhiều trạng thái cho nhiều tài nguyên khác nhau. | [Chi tiết](#http-status-code-2xx-success) |
-| 300               | Multiple Choices - Yêu cầu có nhiều đáp ứng có thể, và một lựa chọn cụ thể cần được thực hiện. | [Chi tiết](#http-status-code-3xx-redirection) |
-| 301               | Moved Permanently - Tài nguyên đã di chuyển vĩnh viễn đến URL mới. | [Chi tiết](#http-status-code-3xx-redirection) |
-| 302               | Found - Tài nguyên được tìm thấy tạm thời tại một URL khác. | [Chi tiết](#http-status-code-3xx-redirection) |
-| 303               | See Other - Tài nguyên nên được truy cập tại một URL khác thông qua GET. | [Chi tiết](#http-status-code-3xx-redirection) |
-| 304               | Not Modified - Tài nguyên không có sự thay đổi nào kể từ lần yêu cầu cuối. | [Chi tiết](#http-status-code-3xx-redirection) |
-| 305               | Use Proxy - Phải sử dụng proxy để truy cập tài nguyên. | [Chi tiết](#http-status-code-3xx-redirection) |
-| 306               | Switch Proxy - Không được sử dụng nữa, đã bị loại bỏ. | [Chi tiết](#http-status-code-3xx-redirection) |
-| 307               | Temporary Redirect - Tài nguyên đã di chuyển tạm thời đến một URL khác, nhưng giữ nguyên phương thức yêu cầu. | [Chi tiết](#http-status-code-3xx-redirection) |
-| 308               | Permanent Redirect - Tài nguyên đã di chuyển vĩnh viễn đến một URL khác, nhưng giữ nguyên phương thức yêu cầu. | [Chi tiết](#http-status-code-3xx-redirection) |
-| 400               | Bad Request - Yêu cầu không hợp lệ được gửi bởi client. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 401               | Unauthorized - Yêu cầu cần xác thực. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 402               | Payment Required - Dự kiến cho tương lai, chưa chuẩn hóa. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 403               | Forbidden - Yêu cầu không được phép, dù đã xác thực. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 404               | Not Found - Không tìm thấy tài nguyên yêu cầu. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 405               | Method Not Allowed - Phương thức yêu cầu không được phép. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 406               | Not Acceptable - Không thể trả về dữ liệu theo định dạng yêu cầu. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 407               | Proxy Authentication Required - Cần xác thực với proxy. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 408               | Request Timeout - Server hết thời gian chờ yêu cầu từ client. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 409               | Conflict - Yêu cầu làm xung đột với trạng thái tài nguyên hiện tại. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 410               | Gone - Tài nguyên đã bị xóa và không thể phục hồi. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 411               | Length Required - Yêu cầu độ dài không được phép mà không có `Content-Length`. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 412               | Precondition Failed - Điều kiện tiên quyết không được thỏa mãn. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 413               | Payload Too Large - Payload của yêu cầu quá lớn để xử lý. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 414               | URI Too Long - URI của yêu cầu quá dài. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 415               | Unsupported Media Type - Kiểu phương tiện không được hỗ trợ trong yêu cầu. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 416               | Range Not Satisfiable - Không thể đáp ứng phần Range yêu cầu. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 417               | Expectation Failed - Expect header không được đáp ứng. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 418               | I'm a teapot - Trò đùa trong RFC 2324. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 421               | Misdirected Request - Yêu cầu hướng sai máy chủ. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 422               | Unprocessable Entity - Dữ liệu không hợp lệ mặc dù đúng định dạng. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 428               | Precondition Required - Thiếu điều kiện cần thiết trong yêu cầu. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 429               | Too Many Requests - Client đã gửi quá nhiều yêu cầu. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 431               | Request Header Fields Too Large - Các trường header quá lớn. | [Chi tiết](#http-status-code-4xx-client-error) |
-| 500               | Internal Server Error - Lỗi không xác định từ server. | [Chi tiết](#http-status-code-5xx-server-error) |
-| 501               | Not Implemented - Server không hỗ trợ chức năng yêu cầu. | [Chi tiết](#http-status-code-5xx-server-error) |
-| 502               | Bad Gateway - Server acting as a gateway không nhận phản hồi từ upstream. | [Chi tiết](#http-status-code-5xx-server-error) |
-| 503               | Service Unavailable - Server quá tải hoặc đang bảo trì. | [Chi tiết](#http-status-code-5xx-server-error) |
-| 504               | Gateway Timeout - Không nhận phản hồi từ upstream server trong khoảng thời gian quy định. | [Chi tiết](#http-status-code-5xx-server-error) |
+| **Mã Trạng Thái** | **Mô Tả Ngắn**                                                                                                 | **Vị Trí Trong Tài Liệu** |
+|-------------------|----------------------------------------------------------------------------------------------------------------|---------------------------|
+| 100               | Continue - Yêu cầu đã được nhận, client có thể tiếp tục gửi phần thân của yêu cầu.                             | [Chi tiết](#100)          |
+| 101               | Switching Protocols - Server đồng ý chuyển đổi giao thức.                                                      | [Chi tiết](#101)          |
+| 102               | Processing - Server đang xử lý yêu cầu nhưng chưa hoàn thành.                                                  | [Chi tiết](#102)          |
+| 103               | Early Hints - Gợi ý tài nguyên để tải trước mà chưa có kết quả chính thức.                                     | [Chi tiết](#103)          |
+| 200               | OK - Yêu cầu đã thành công.                                                                                    | [Chi tiết](#200)          |
+| 201               | Created - Yêu cầu đã thành công và một tài nguyên mới đã được tạo ra.                                          | [Chi tiết](#201)          |
+| 202               | Accepted - Yêu cầu đã được chấp nhận để xử lý, nhưng chưa hoàn thành.                                          | [Chi tiết](#202)          |
+| 203               | Non-Authoritative Information - Thông tin trả về không trực tiếp từ server gốc.                                | [Chi tiết](#203)          |
+| 204               | No Content - Yêu cầu thành công nhưng không có nội dung nào để trả về.                                         | [Chi tiết](#204)          |
+| 205               | Reset Content - Yêu cầu thành công nhưng cần reset form nhập liệu.                                             | [Chi tiết](#205)          |
+| 206               | Partial Content - Server chỉ gửi một phần của tài nguyên.                                                      | [Chi tiết](#206)          |
+| 207               | Multi-Status - Trả về nhiều trạng thái cho nhiều tài nguyên khác nhau.                                         | [Chi tiết](#207)          |
+| 300               | Multiple Choices - Yêu cầu có nhiều đáp ứng có thể, và một lựa chọn cụ thể cần được thực hiện.                 | [Chi tiết](#300)          |
+| 301               | Moved Permanently - Tài nguyên đã di chuyển vĩnh viễn đến URL mới.                                             | [Chi tiết](#301)          |
+| 302               | Found - Tài nguyên được tìm thấy tạm thời tại một URL khác.                                                    | [Chi tiết](#302)          |
+| 303               | See Other - Tài nguyên nên được truy cập tại một URL khác thông qua GET.                                       | [Chi tiết](#303)          |
+| 304               | Not Modified - Tài nguyên không có sự thay đổi nào kể từ lần yêu cầu cuối.                                     | [Chi tiết](#304)          |
+| 305               | Use Proxy - Phải sử dụng proxy để truy cập tài nguyên.                                                         | [Chi tiết](#305)          |
+| 306               | Switch Proxy - Không được sử dụng nữa, đã bị loại bỏ.                                                          | [Chi tiết](#306)          |
+| 307               | Temporary Redirect - Tài nguyên đã di chuyển tạm thời đến một URL khác, nhưng giữ nguyên phương thức yêu cầu.  | [Chi tiết](#307)          |
+| 308               | Permanent Redirect - Tài nguyên đã di chuyển vĩnh viễn đến một URL khác, nhưng giữ nguyên phương thức yêu cầu. | [Chi tiết](#308)          |
+| 400               | Bad Request - Yêu cầu không hợp lệ được gửi bởi client.                                                        | [Chi tiết](#400)          |
+| 401               | Unauthorized - Yêu cầu cần xác thực.                                                                           | [Chi tiết](#401)          |
+| 402               | Payment Required - Dự kiến cho tương lai, chưa chuẩn hóa.                                                      | [Chi tiết](#402)          |
+| 403               | Forbidden - Yêu cầu không được phép, dù đã xác thực.                                                           | [Chi tiết](#403)          |
+| 404               | Not Found - Không tìm thấy tài nguyên yêu cầu.                                                                 | [Chi tiết](#404)          |
+| 405               | Method Not Allowed - Phương thức yêu cầu không được phép.                                                      | [Chi tiết](#405)          |
+| 406               | Not Acceptable - Không thể trả về dữ liệu theo định dạng yêu cầu.                                              | [Chi tiết](#406)          |
+| 407               | Proxy Authentication Required - Cần xác thực với proxy.                                                        | [Chi tiết](#407)          |
+| 408               | Request Timeout - Server hết thời gian chờ yêu cầu từ client.                                                  | [Chi tiết](#408)          |
+| 409               | Conflict - Yêu cầu làm xung đột với trạng thái tài nguyên hiện tại.                                            | [Chi tiết](#409)          |
+| 410               | Gone - Tài nguyên đã bị xóa và không thể phục hồi.                                                             | [Chi tiết](#410)          |
+| 411               | Length Required - Yêu cầu độ dài không được phép mà không có `Content-Length`.                                 | [Chi tiết](#411)          |
+| 412               | Precondition Failed - Điều kiện tiên quyết không được thỏa mãn.                                                | [Chi tiết](#412)          |
+| 413               | Payload Too Large - Payload của yêu cầu quá lớn để xử lý.                                                      | [Chi tiết](#413)          |
+| 414               | URI Too Long - URI của yêu cầu quá dài.                                                                        | [Chi tiết](#414)          |
+| 415               | Unsupported Media Type - Kiểu phương tiện không được hỗ trợ trong yêu cầu.                                     | [Chi tiết](#415)          |
+| 416               | Range Not Satisfiable - Không thể đáp ứng phần Range yêu cầu.                                                  | [Chi tiết](#416)          |
+| 417               | Expectation Failed - Expect header không được đáp ứng.                                                         | [Chi tiết](#417)          |
+| 418               | I'm a teapot - Trò đùa trong RFC 2324.                                                                         | [Chi tiết](#418)          |
+| 421               | Misdirected Request - Yêu cầu hướng sai máy chủ.                                                               | [Chi tiết](#421)          |
+| 422               | Unprocessable Entity - Dữ liệu không hợp lệ mặc dù đúng định dạng.                                             | [Chi tiết](#422)          |
+| 428               | Precondition Required - Thiếu điều kiện cần thiết trong yêu cầu.                                               | [Chi tiết](#428)          |
+| 429               | Too Many Requests - Client đã gửi quá nhiều yêu cầu.                                                           | [Chi tiết](#429)          |
+| 431               | Request Header Fields Too Large - Các trường header quá lớn.                                                   | [Chi tiết](#431)          |
+| 500               | Internal Server Error - Lỗi không xác định từ server.                                                          | [Chi tiết](#500)          |
+| 501               | Not Implemented - Server không hỗ trợ chức năng yêu cầu.                                                       | [Chi tiết](#501)          |
+| 502               | Bad Gateway - Server acting as a gateway không nhận phản hồi từ upstream.                                      | [Chi tiết](#502)          |
+| 503               | Service Unavailable - Server quá tải hoặc đang bảo trì.                                                        | [Chi tiết](#503)          |
+| 504               | Gateway Timeout - Không nhận phản hồi từ upstream server trong khoảng thời gian quy định.                      | [Chi tiết](#504)          |
 
 ## HTTP Status Code 1xx: Informational
 1xx là nhóm status code dùng để thông báo cho client rằng request của nó đã được nhận và đang xử lý. Client không cần phải làm gì cả.
 
-### 100 Continue
+### 100 Continue {#100}
 HTTP này thông báo rằng client đã gửi request phần đầu tiên(Header) và server đã chấp nhận request và sẵn sàng body để xử lý dữ liệu, thường điều này xảy ra khi body rất lớn và client có thể gửi phần tiếp theo(Body).
 
 Ví dụ:
@@ -190,7 +190,7 @@ note left of C: Server trả lời với mã trạng thái 201 Created, cùng v�
 ```
 Thực tế, status code này hiện tại ít được sử dụng.
 
-### 101 Switching Protocols
+### 101 Switching Protocols {#101}
 
 Hiện tại HTTP/2 và HTTP/3 đã rất phổ biến và được sử dụng. Tuy nhiên không phải server nào cũng hỗ trợ HTTP/2 hoặc HTTP/3.
 
@@ -228,12 +228,12 @@ Thực tế, status code này hiện tại ít được sử dụng.
 #### Sử dụng tls để Switching Protocols khi ACK https
 Có 1 cách nữa mà đa số được sử dụng là tại thời điểm bắt tay tls handshake, client sẽ gửi lên danh sách protocol mà nó hỗ trợ, server sẽ chọn ra protocol phù hợp và trả về cho client.
 
-### 102 Processing
+### 102 Processing {#102}
 Status code này thông báo rằng server đang xử lý request nhưng chưa hoàn thành. Client có thể chờ đợi hoặc gửi request khác.
 
 Thực tế, status code này hiện tại ít được sử dụng.
 
-### 103 Early Hints
+### 103 Early Hints {#103}
 Status code này được sử dụng để thông báo cho client rằng client cần tài trước một số thông tin trước khi nhận response chính thức.
 
 Ví dụ: Để hiển thị một HTMl thì client cần tải trước một số file css, js, image... để hiển thị đúng.
@@ -243,7 +243,7 @@ Thực tế, status code này hiện tại ít được sử dụng.
 ## HTTP Status Code 2xx: Success
 HTTP Status Code 2xx là nhóm status code thông báo cho client rằng request của client đã được xử lý thành công.
 
-### 200 OK
+### 200 OK {#200}
 Status code này thông báo rằng request của client đã được xử lý thành công và thông tin được trả về trong response( Nếu có ).
 ```plantuml
 @startuml
@@ -259,7 +259,7 @@ S --> C: HTTP/1.1 200 OK\nContent-Type: application/json\nContent-Length: 123 \n
 note left of C: Client nhận được phản hồi từ Server với dữ liệu yêu cầu.
 @enduml
 ```
-### 201 Created
+### 201 Created {#201}
 Status code này thông báo rằng request của client đã được xử lý thành công và một resource mới đã được tạo ra. Thường được sử dụng khi client gửi request POST để tạo mới một resource.
 
 Response sẽ chứa thông tin về resource mới được tạo ra.
@@ -280,7 +280,7 @@ note left of C: Client nhận được phản hồi từ Server với thông tin
 @enduml
 ```
 
-### 202 Accepted
+### 202 Accepted {#202}
 Status code này thông báo rằng request của client đã được chấp nhận và sẽ được xử lý sau. Thường được sử dụng khi client gửi request để xử lý một công việc nào đó mà không cần phải trả về kết quả ngay lập tức.
 
 Ví dụ: Gửi email, chạy job build, xử lý dữ liệu lớn...
@@ -313,7 +313,7 @@ note left of C: Client nhận được cập nhật trạng thái của tác v�
 @enduml
 ```
 
-### 203 Non-Authoritative Information
+### 203 Non-Authoritative Information {#203}
 HTTP Status code này thông báo rằng request đã được xử lý thành công nhưng thông tin trả về không phải từ server gốc mà từ một server khác.
 
 Các ứng dụng sử dụng các dịch vụ proxy hoặc cache có thể sử dụng mã 203 để chỉ ra rằng thông tin trả về không phải từ nguồn gốc mà từ một nguồn khác.
@@ -343,7 +343,7 @@ note left of C: Client nhận được phản hồi từ Proxy với dữ liệu
 ```
 
 
-### 204 No Content
+### 204 No Content {#204}
 HTTP Status code này thông báo rằng request đã được xử lý thành công nhưng không có thông tin(Body) nào được trả về.
 
 Tuy nhiên, đầu ra của phản hồi vẫn có thể chứa các thông tin hữu ích trong phần header, ví dụ như thông tin về các tài nguyên tiếp theo có thể được yêu cầu hoặc hướng dẫn về hành động tiếp theo.
@@ -366,7 +366,7 @@ note left of C: 'Client nhận được phản hồi từ Server với không c�
 @enduml
 ```
 
-### 205 Reset Content
+### 205 Reset Content {#205}
 HTTP Status code này thông báo rằng client cần reset lại form mà nó đã gửi đi. Thường được sử dụng trong trường hợp client gửi form và server xử lý thành công và cần client reset lại form submit.
 
 Thực tế, status code này hiện tại ít được sử dụng.
@@ -387,7 +387,7 @@ note left of C: Client nhận được phản hồi từ Server, yêu cầu rese
 
 ```
 
-### 206 Partial Content
+### 206 Partial Content {#206}
 HTTP Status code này thông báo rằng server đã trả về một phần dữ liệu của resource mà client yêu cầu. Thường được sử dụng khi client yêu cầu một phần dữ liệu của file lớn.
 
 HTTP code này được sử dụng rất nhiều trong quá khứ, hiện tại 2024 thì nó đã giảm bớt.
@@ -421,7 +421,7 @@ note left of C: Server gửi phần tiếp theo của nội dung (bytes 1024-204
 ```
 Thực tế bây giờ kỹ thuật HLS, Dash đã phổ biến nên status code này ít được sử dụng.
 
-### 207 Multi-Status
+### 207 Multi-Status {#207}
 HTTP Status code này thông báo rằng request của client đã được xử lý thành công nhưng response chứa nhiều thông tin về trạng thái của các tài nguyên khác nhau.
 
 Status này được sử dụng khi request của người dùng yêu cầu xử lý nhiều tài nguyên cùng một lúc và mỗi tài nguyên có một trạng thái khác nhau.
@@ -450,7 +450,7 @@ note left of C: Server trả về phản hồi đa trạng thái, chứa mã tr�
 ## HTTP Status Code 3xx: Redirection
 Hiểu đơn giản HTTP Status Code 3xx là nhóm status code thông báo cho client rằng client cần thực hiện một hành động khác để hoàn thành request.
 
-### 300 Multiple Choices
+### 300 Multiple Choices {#300}
 HTTP Status code này thông báo rằng request của client có nhiều lựa chọn để chọn. Client cần chọn một trong số các lựa chọn được trả về.
 Ví dụ: Client request một resource mà có nhiều phiên bản, client cần chọn một phiên bản để xem.
 
@@ -478,7 +478,7 @@ note left of C: Server trả lời với biểu diễn đã chọn trong tiếng
 @enduml
 ```
 
-### 301 Moved Permanently
+### 301 Moved Permanently {#301}
 HTTP Status code này thông báo rằng request của client đã được chuyển hướng vĩnh viễn đến một URL khác. Các công cụ tìm kiếm sẽ cập nhật URL cũ thành URL mới trong index của chúng.
 Hiện tại HTTP Status code này vẫn được sử dụng rất nhiều, nó thường phục vụ cho việc một URL bị thay đổi hoặc một trang web bị chuyển địa chỉ.
 
@@ -508,7 +508,7 @@ note left of C: Server trả lời với nội dung của URL mới
 
 ```
 
-### 302 Found (Trước đây là Moved Temporarily)
+### 302 Found (Trước đây là Moved Temporarily) {#302}
 HTTP Status code này thông báo rằng request của client đã được chuyển hướng tạm thời đến một URL khác, nhưng bạn dự định sẽ phục hồi URL ban đầu sau một thời gian. Các công cụ tìm kiếm sẽ không thay đổi URL trong index.
 Thực tế  302 sẽ tương tự như 301, tuy nhiên 302 sẽ nói rằng đây chỉ là tạm thời chứ không phải vĩnh viễn.
 
@@ -538,7 +538,7 @@ Thực tế HTTP Status này sẽ hỗ trợ tốt với SEO, 302 sẽ cho các 
 
 Nếu bạn muốn chuyển hướng vĩnh viễn thì nên sử dụng 301.
 
-### 303 See Other
+### 303 See Other {#303}
 HTTP Status này thông báo cho client biết rằng tài nguyên mà client yêu cầu đã được tạo và nằm ở một URL khác. Client cần gửi một request mới đến URL mới để lấy thông tin.
 Ví dụ sau khi submit một form thành công, chuyển hướng người dùng đến web page `cảm ơn`.
 
@@ -566,7 +566,7 @@ note left of C: Server phản hồi với nội dung của trang xác nhận.
 
 Thực tế, status code này hiện tại ít được sử dụng.
 
-### 304 Not Modified
+### 304 Not Modified {#304}
 
 HTTP Status code này thông báo rằng tài nguyên mà client yêu cầu không thay đổi từ lần cuối cùng client yêu cầu. Server sẽ trả về status code này và không trả về dữ liệu của tài nguyên. Client sẽ sử dụng cache để hiển thị dữ liệu.
 
@@ -600,7 +600,7 @@ note right of C: Client lấy tài nguyên từ bộ nhớ đệm của mình
 
 ```
 
-### 305 Use Proxy
+### 305 Use Proxy {#305}
 HTTP Status code này thông báo rằng client cần sử dụng proxy để truy cập tài nguyên. Thường được sử dụng trong trường hợp client không thể truy cập trực tiếp tài nguyên mà cần thông qua proxy.
 
 HTTP code này cần được trả về từ chính Origin Server, không được trả về từ Proxy. Và khi trả về sẽ kèm theo url của proxy thông qua header `Location`.
@@ -631,10 +631,10 @@ note left of C: Proxy phản hồi với nội dung của tài nguyên
 
 Thực tế, status code này hiện tại ít được sử dụng.
 
-### 306 Switch Proxy
+### 306 Switch Proxy {#306}
 Thực tế status code này không được sử dụng nữa, nó chỉ tồn tại trong HTTP/1.1 draft.
 
-### 307 Temporary Redirect
+### 307 Temporary Redirect {#307}
 Tuong tự như 302, status code này thông báo rằng request của client đã được chuyển hướng tạm thời đến một URL khác.
 Client cần gửi một request mới đến URL mới để lấy thông tin.
 
@@ -666,12 +666,10 @@ note left of C: Server phản hồi với nội dung của URL mới
 @enduml
 ```
 
-### 308 Permanent Redirect
+### 308 Permanent Redirect {#308}
 Tương tự vấn đề của 302 và 307, 308 được tạo ra để giữ nguyên method của request và phân biên rõ ràng với 301.
 
 HTTP Status code này thông báo rằng request của client đã được chuyển hướng vĩnh viễn đến một URL khác giống với 301 nhưng giữ nguyên method của request khi chuyển hướng.
-
-
 
 ```plantuml
 @startuml
@@ -695,11 +693,11 @@ note left of C: Server phản hồi với nội dung của URL mới
 @enduml
 ```
 
-## HTTP Status Code 4xx: Client Error
+## HTTP Status Code 4xx: Client Error {#4xx}
 Status code 4xx là nhóm status code thông báo cho client rằng request của client không hợp lệ hoặc không thể xử lý.
 Nguyên nhân có thể là do client gửi request không hợp lệ(Thiếu dữ liệu...etc...), không có quyền truy cập tài nguyên hoặc tài nguyên không tồn tại.
 
-### 400 Bad Request
+### 400 Bad Request {#400}
 HTTP Status code này thông báo rằng request của client không hợp lệ. Thường được sử dụng khi client gửi request không đúng cú pháp, thiếu dữ liệu.
 Ví dụ: Client gửi request POST nhưng không có body nhưng server yêu cầu body.
 ```plantuml
@@ -726,7 +724,7 @@ note left of C: Server phản hồi với tài nguyên đã yêu cầu sau khi t
 @enduml
 ```
 
-### 401 Unauthorized
+### 401 Unauthorized {#401}
 HTTP Status code này thông báo rằng client cần xác thực để truy cập tài nguyên. Thường được sử dụng khi client gửi request mà không có thông tin xác thực hoặc thông tin xác thực không hợp lệ.
 
 Ví dụ khi client gửi request mà không gửi token ở trong header, hoặc token không hợp lệ.
@@ -770,10 +768,10 @@ note left of C: Server phản hồi với tài nguyên đã yêu cầu, vì Clie
 
 Như mô tả ở trên, khi API yêu cầu xác thực, client cần gửi thông tin xác thực lên cho server, nếu không gửi hoặc gửi thông tin không hợp lệ thì server sẽ trả về `401 Unauthorized`.
 
-### 402 Payment Required
+### 402 Payment Required {#402}
 Code này không được sử dụng, nó được tạo ra để sử dụng trong tương lai và chưa được chuẩn hóa.
 
-### 403 Forbidden
+### 403 Forbidden {#403}
 HTTP Status code này thông báo rằng client không có quyền truy cập tài nguyên. Thường được sử dụng khi client gửi request mà không có quyền truy cập tài nguyên.
 
 Ví dụ một tài khoản đã pass 401 nhưng khi kiểm tra quyền để truy cập tài nguyên thì không có, khi đó HTTP Status code 403 sẽ được trả về.
@@ -816,7 +814,7 @@ note left of C: Server phản hồi với tài nguyên admin đã yêu cầu, v�
 @enduml
 ```
 
-### 404 Not Found
+### 404 Not Found {#404}
 HTTP Status code này thông báo rằng server không tìm thấy tài nguyên mà client yêu cầu. Thường được sử dụng khi client yêu cầu một tài nguyên không tồn tại.
 
 ```plantuml
@@ -868,7 +866,7 @@ note left of C: Server phản hồi với 200, giao tài nguyên yêu cầu thà
 
 Lưu ý: Có thể là không tồn tại, hoặc đã bị xóa cứng hoặc đã bị xóa mềm.
 
-### 405 Method Not Allowed
+### 405 Method Not Allowed {#405}
 HTTP Status code này thông báo rằng phương thức request của client không được phép trên tài nguyên. Thường được sử dụng khi client gửi request với phương thức không được hỗ trợ.
 
 Với 405 là server nhận biết được method client yêu ầu là gì, tuy nhiên server không hỗ trợ method đó.
@@ -905,7 +903,7 @@ note left of C: Server phản hồi với 200, giao tài nguyên yêu cầu thà
 @enduml
 ```
 
-### 406 Not Acceptable
+### 406 Not Acceptable {#406}
 HTTP Status code này thông báo rằng server không thể trả về dữ liệu theo định dạng mà client yêu cầu. Thường được sử dụng khi client yêu cầu dữ liệu ở một định dạng mà server không hỗ trợ.
 
 Khi gửi request, client cần gửi thông tin về định dạng mà nó muốn nhận dữ liệu thông qua header `Accept` và có thể thêm `Accept-Encoding` và `Accept-Language`.
@@ -943,7 +941,7 @@ note left of C: Server phản hồi với 200, giao tài nguyên yêu cầu dư�
 @enduml
 ```
 
-### 407 Proxy Authentication Required
+### 407 Proxy Authentication Required {#407}
 Khi client sử dụng một proxy trung gian để truy câp tài nguyên đến server, và proxy yêu cầu client cần xác thực để truy cập tài nguyên.
 
 Client cần gửi kèm thông tin xác thực của proxy. Nếu client không gửi thông tin xác thực hoặc thông tin xác thực không hợp lệ thì server sẽ trả về 407 Proxy Authentication Required.
@@ -995,7 +993,7 @@ note left of C: Server proxy chuyển tiếp phản hồi thành công lại cho
 @enduml
 ```
 
-### 408 Request Timeout
+### 408 Request Timeout {#408}
 
 HTTP Status code này thông báo rằng server đã hết thời gian xử lý request của client. Thường được sử dụng khi server không thể xử lý request của client trong khoảng thời gian quy định.
 
@@ -1030,7 +1028,7 @@ note left of C: Server phản hồi với 200, giao tài nguyên yêu cầu thà
 @enduml
 ```
 
-### 409 Conflict
+### 409 Conflict {#409}
 Như cái tên cũng đã mô tả, HTTP Status code này thông báo rằng request của client làm xung đột với trạng thái hiện tại của tài nguyên.
 
 Thường được sử dụng khi client gửi request mà xung đột với trạng thái hiện tại của tài nguyên.
@@ -1080,7 +1078,7 @@ note left of C1: Server phản hồi với mã 409, thông báo rằng tài nguy
 @enduml
 ```
 
-### 410 Gone
+### 410 Gone {#410}
 HTTP Status code này thông báo rằng tài nguyên mà client yêu cầu đã không còn sẵn. Thường được sử dụng khi tài nguyên đã bị xóa và không thể phục hồi hoặc tồn tại lại trong tương lai bằng bất kỳ cách nào.
 
 
@@ -1108,7 +1106,7 @@ note left of C: Server phản hồi với mã 410, thông báo rằng tài nguy�
 
 Hiện tại ít được sử dụng, thường sử dụng 404 Not Found thay thế. Và coi đó là một cách thông báo rằng tài nguyên không tồn tại.
 
-### 411 Length Required
+### 411 Length Required {#411}
 HTTP Status code này thông báo rằng server yêu cầu client cung cấp thông tin về độ dài của body trong request.
 
 Thường được sử dụng khi client gửi request mà không có thông tin về độ dài của body.
@@ -1136,7 +1134,7 @@ note left of C: Server phản hồi với mã 411, yêu cầu Client cung cấp 
 
 ```
 
-### 412 Precondition Failed
+### 412 Precondition Failed {#412}
 HTTP code này thông báo rằng một hoặc nhiều điều kiện tiên quyết để server xử lý request của client không được client gửi lên trên header hoặc không thỏa mãn.
 
 Một số condition có thể là `If-Match`, `If-None-Match`, `If-Modified-Since`, `If-Unmodified-Since`, `If-Range`, `If-None-Match`. Các preconditions này được sử dụng để xác minh rằng client chỉ thực hiện hành động nếu trạng thái tài nguyên đáp ứng các tiêu chí xác định, giúp tránh các xung đột hoặc lỗi không mong muốn.
@@ -1184,7 +1182,7 @@ note left of C: 'Server xử lý yêu cầu và cập nhật tài nguyên thành
 @enduml
 ```
 
-### 413 Payload Too Large
+### 413 Payload Too Large {#413}
 
 HTTP Status code này thông báo rằng server không thể xử lý request của client vì body của request quá lớn.
 
@@ -1210,7 +1208,7 @@ note left of C: Server trả về lỗi 413 để thông báo rằng nội dung 
 @enduml
 ```
 
-### 414 URI Too Long
+### 414 URI Too Long {#414}
 HTTP Status code này thông báo rằng server không thể xử lý request của client vì URI của request quá dài.
 
 Một số server có thể có giới hạn về độ dài của URI, nếu client gửi request với URI quá dài thì server sẽ trả về 414 URI Too Long.
@@ -1241,7 +1239,7 @@ curl 'https://thanhlv.com/?a=RojzhXZsfiohubeFQ2Q3TKd2XaiGKAuKjye1r9j0QqKzW1Hg907
 Response : `Error: URI Too Long% `
 :::
 
-### 415 Unsupported Media Type
+### 415 Unsupported Media Type {#415}
 
 HTTP Status code này thông báo rằng server không hỗ trợ kiểu dữ liệu của request của client.
 Ví dụ client gửi request với Content-Type là XML nhưng server chỉ hỗ trợ JSON chỉ server sẽ trả về 415 Unsupported Media Type.
@@ -1279,7 +1277,7 @@ note left of C: Server xử lý yêu cầu và trả về phản hồi thành c�
 @enduml
 ```
 
-### 416 Range Not Satisfiable
+### 416 Range Not Satisfiable {#416}
 HTTP Status code này thông báo rằng server không thể thực hiện yêu cầu của client vì giá trị của Range header không hợp lệ.
 Nguyên nhân có thể là giá trị của Range header không hợp lệ về format hoặc nằm ngoài phạm vi của tài nguyên.
 
@@ -1316,18 +1314,18 @@ note left of C: Server trả về đoạn video tương ứng với phạm vi đ
 @enduml
 ```
 
-### 417 Expectation Failed
+### 417 Expectation Failed {#417}
 HTTP Status code này thông báo rằng server không thể thực hiện yêu cầu của client vì Expect header không hợp lệ hoặc không thể được thực hiện.
 
 Expect header thường được sử dụng để yêu cầu server thực hiện một số hành động trước khi client gửi request thực sự. Ví dụ, client có thể yêu cầu server xác nhận rằng nó hỗ trợ 100-continue trước khi gửi dữ liệu.
 
 Khi server không hỗ trợ Expect hoặc không thể thực hiện yêu cầu, nó sẽ trả về 417 Expectation Failed.
 
-### 418 I'm a teapot
+### 418 I'm a teapot {#418}
 
 Bắt đầu từ mộ trò đùa trong RFC 2324, HTTP Status code 418 I'm a teapot không có ý nghĩa thực tế và không nên được sử dụng trong ứng dụng thực tế.
 
-### 421 Misdirected Request
+### 421 Misdirected Request {#419}
 
 HTTP Status code này thông báo rằng server không thể xử lý yêu cầu của client vì yêu cầu đã được gửi đến một máy chủ không đúng.
 
@@ -1335,7 +1333,7 @@ HTTP Status code này thông báo rằng server không thể xử lý yêu cầu
 
 Thực tế HTTP Code này cũng ít được sử dụng.
 
-### 422 Unprocessable Entity
+### 422 Unprocessable Entity {#422}
 
 HTTP Status code này thông báo rằng server không thể xử lý yêu cầu của client vì dữ liệu của yêu cầu không hợp lệ.
 
@@ -1379,7 +1377,7 @@ Thực tế HTTP CODE này ít được sử dụng.
 ### 428, 429, 431 và 511
 Thực tế trong RFC của HTTP/1.1 không có 3 HTTP code này, 3 HTTP code này là một phần mở rộng của HTTP/1.1 được viết trong [RFC 6585](https://datatracker.ietf.org/doc/html/rfc6585)
 
-### 428 Precondition Required
+### 428 Precondition Required {#428}
 HTTP Code này hơi giống `412 Precondition Failed`, tuy nhiên HTPP code này là server yêu cầu có các điều kiện nhưng client không gửi lên.
 
 Ví dụ server yêu cầu client gửi lên ` If-Match` nhưng client không gửi lên.
@@ -1417,7 +1415,7 @@ note left of C: Server xử lý yêu cầu và trả về phản hồi thành c�
 @enduml
 ```
 
-### 429 Too Many Requests
+### 429 Too Many Requests {#429}
 Đây là mộ trong những HTTP code phổ biến nhất, thông báo rằng client đã gửi quá nhiều yêu cầu trong một khoảng thời gian nhất định.
 
 Thông thường server sẽ cấu hình một số giới hạn về số lượng request mà client có thể gửi trong một khoảng thời gian nhất định( `Rate limit` ), nếu client vượt quá giới hạn này, server sẽ trả về 429 Too Many Requests.
@@ -1475,7 +1473,7 @@ S --> C: HTTP/1.1 200 OK\n{ "data": "Success" }
 ```
 
 
-### 431 Request Header Fields Too Large
+### 431 Request Header Fields Too Large {#431}
 Giống với 413 hoặc 414, HTTP code này thông báo rằng server không thể xử lý yêu cầu của client vì kích thước của các trường header quá lớn.
 
 Khi có một số trường header quá lớn, server sẽ trả về 431 Request Header Fields Too Large.
@@ -1523,11 +1521,11 @@ note left of C: Server xử lý yêu cầu thành công.
 @enduml
 ```
 
-## HTTP Status Code 5xx: Server Error
+## HTTP Status Code 5xx: Server Error {#5xx}
 Status code 5xx là nhóm mã lỗi HTTP dành cho các lỗi phát sinh từ phía server khi xử lý yêu cầu của client.
 Khi client nhận được mã lỗi 5xx, nó biết rằng lỗi không phải từ phía client mà từ phía server.
 
-### 500 Internal Server Error
+### 500 Internal Server Error {#500}
 Đây là mã lỗi phổ biến nhất trong nhóm 5xx là lỗi ám ảnh của anh em theo BE, thông báo rằng server gặp lỗi không xác định khi xử lý yêu cầu của client.
 
 Có nhiều lỗi khác nhau có thể dẫn đến mã lỗi 500, bao gồm lỗi lập trình, lỗi cấu hình, lỗi hệ thống, lỗi cơ sở dữ liệu, v.v.
@@ -1561,7 +1559,7 @@ note left of C: Server thông báo lỗi nội bộ đến client.
 @enduml
 ```
 
-### 501 Not Implemented
+### 501 Not Implemented {#501}
 Mã lỗi 501 Not Implemented thông báo rằng server không hỗ trợ method được yêu cầu trong yêu cầu của client.
 
 Nó tương tự như mã lỗi 405 Method Not Allowed, nhưng 501 được sử dụng khi server không xác định được method yêu cầu có hỗ trợ hay không.
@@ -1594,7 +1592,7 @@ note left of C: Proxy phản hồi lỗi từ Origin Server đến Client.
 
 ```
 
-### 502 Bad Gateway
+### 502 Bad Gateway {#502}
 
 Mã lỗi 502 Bad Gateway thông báo rằng server hoạt động như một cổng thông tin (gateway) hoặc proxy, nhưng không thể nhận phản hồi từ server upstream.
 
@@ -1638,7 +1636,7 @@ note left of C: Proxy Server phản hồi lỗi do không nhận được phản
 @enduml
 ```
 
-### 503 Service Unavailable
+### 503 Service Unavailable {#503}
 Đây cũng là mã lỗi phổ biến trong nhóm 5xx, thông báo rằng server không thể xử lý yêu cầu của client tại thời điểm đó.
 
 Vấn đề có thể là do server quá tải, bảo trì, hoặc không thể xử lý yêu cầu vì lý do khác.
@@ -1677,7 +1675,7 @@ note left of C: Server thông báo dịch vụ tạm thời không khả dụng 
 
 ```
 
-### 504 Gateway Timeout
+### 504 Gateway Timeout {#504}
 
 Mã lỗi 504 Gateway Timeout thông báo rằng server hoạt động như một cổng thông tin (gateway) hoặc proxy, nhưng không thể nhận phản hồi từ server upstream trong khoảng thời gian quy định.
 
