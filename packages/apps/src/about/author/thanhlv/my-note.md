@@ -73,12 +73,18 @@ date: 2024-01-08
 
 ::: details Chi tiết
 
-| Mô tả                             | Link                                                                    |
-|-----------------------------------|-------------------------------------------------------------------------|
-| Ước tính chi phí tài nguyên       | [Link](https://www.youtube.com/watch?v=UC5xf8FbdJc&ab_channel=ByteByteGo) |
-| Top 10 đặc điểm của các kiến trúc chức năn | [Link](../images/thanhlv/my-note/Top-10-đặc-điểm-của-các-kiến-trúc.png) |
+| Mô tả                                       | Link                                                                      |
+|---------------------------------------------|---------------------------------------------------------------------------|
+| Ước tính chi phí tài nguyên                 | [Link](https://www.youtube.com/watch?v=UC5xf8FbdJc&ab_channel=ByteByteGo) |
+| Top 10 đặc điểm của các kiến trúc chức năng | [Link](../images/thanhlv/my-note/Top-10-đặc-điểm-của-các-kiến-trúc.png)   |
 
 :::
+
+## Nâng cấp bản thân
+
+| Mô tả                       | Link                                                |
+|-----------------------------|-----------------------------------------------------|
+| Ngủ ÍT được NHIỀU 💤 | [Link](https://www.youtube.com/watch?v=RVo7NdzOdS0) |
 
 ## Chưa xác định
 
