@@ -10,7 +10,7 @@ draft: true
 ---
 
 
-Ngày nay, mỗi một giây trôi qua, có hàng triệu request HTTP được gửi đi và nhận về trên mạng global hoặc mạng internal. 
+Ngày nay, mỗi một giây trôi qua, có hàng triệu request HTTP được gửi đi và nhận về trên mạng global hoặc mạng internal.
 HTTP là một phần không thể thiếu trong cuộc sống của chúng ta. Một trong những thành phần quan trọng nhất của HTTP là HTTP Status Code.
 
 Một vấn đề thực tế ở Việt Nam là các lập trình thường chỉ biết đến các Status Code là `200`, `400`, `401`, `403` và `500`. Nhiều status khác như `201`, `204`, `206`, `301`... thì ít khi được sử dụng nên không được biết đến.
@@ -52,7 +52,7 @@ curl -X POST http://api.example.com/users -H "Authorization: Bearer TOKEN" \
   "data": null
 }
 ```
-::: 
+:::
 
 
 Bài viết này mình sẽ chia sẻ với các bạn về ý nghĩa của các HTTP Status Code thông dụng và trường hợp sử dụng chúng.
@@ -62,7 +62,7 @@ Theo tài liệu rfc của HTTP thì [HTTP code](https://www.rfc-editor.org/rfc/
 
 HTTP Status Code được sử dụng để thông báo nhanh cho client về kết quả của request mà nó đã gửi đi. Client sẽ có cái nhìn tổng quan nhanh về kết quả của request chứ chưa cần kiểm tra kỹ content response, ví dụ thành công hay thất bại.
 
-HTTP Status Code được chia thành 5 nhóm chính: `1xx`, `2xx`, `3xx`, `4xx` và `5xx`. 
+HTTP Status Code được chia thành 5 nhóm chính: `1xx`, `2xx`, `3xx`, `4xx` và `5xx`.
 
 Mỗi nhóm sẽ có ý nghĩa cụ thể, đôi khi chỉ mang ý nghĩa chung chung và các lập viên có cái nhìn tổng quan về kết quả của request.
 
@@ -291,7 +291,7 @@ note left of C: Client nhận được phản hồi từ Proxy với dữ liệu
 
 
 ### 204 No Content
-HTTP Status code này thông báo rằng request đã được xử lý thành công nhưng không có thông tin(Body) nào được trả về. 
+HTTP Status code này thông báo rằng request đã được xử lý thành công nhưng không có thông tin(Body) nào được trả về.
 
 Tuy nhiên, đầu ra của phản hồi vẫn có thể chứa các thông tin hữu ích trong phần header, ví dụ như thông tin về các tài nguyên tiếp theo có thể được yêu cầu hoặc hướng dẫn về hành động tiếp theo.
 
@@ -582,7 +582,7 @@ Thực tế, status code này hiện tại ít được sử dụng.
 Thực tế status code này không được sử dụng nữa, nó chỉ tồn tại trong HTTP/1.1 draft.
 
 ### 307 Temporary Redirect
-Tuong tự như 302, status code này thông báo rằng request của client đã được chuyển hướng tạm thời đến một URL khác. 
+Tuong tự như 302, status code này thông báo rằng request của client đã được chuyển hướng tạm thời đến một URL khác.
 Client cần gửi một request mới đến URL mới để lấy thông tin.
 
 Tuy nhiên, khác với 302, client sẽ không thay đổi phương thức request, nghĩa là nếu client gửi request POST thì sẽ vẫn gửi POST.
@@ -813,10 +813,13 @@ note left of C: Server phản hồi với 200, giao tài nguyên yêu cầu thà
 @enduml
 ```
 
-Lưu ý: Có thể là không tồn tại, hoặc đã bị xóa cứng hoặc đã bị xóa mềm. 
+Lưu ý: Có thể là không tồn tại, hoặc đã bị xóa cứng hoặc đã bị xóa mềm.
 
 ### 405 Method Not Allowed
 HTTP Status code này thông báo rằng phương thức request của client không được phép trên tài nguyên. Thường được sử dụng khi client gửi request với phương thức không được hỗ trợ.
+
+Với 405 là server nhận biết được method client yêu ầu là gì, tuy nhiên server không hỗ trợ method đó.
+Hiểu đơn là server nhận biết được method nhưng cố tình không hỗ trợ.
 
 Ví dụ server chỉ hỗ trợ method GET cho endpoint `/resource` nhưng client gửi request với method POST thì server sẽ trả về 405 Method Not Allowed.
 
@@ -975,7 +978,7 @@ note left of C: Server phản hồi với 200, giao tài nguyên yêu cầu thà
 ```
 
 ### 409 Conflict
-Như cái tên cũng đã mô tả, HTTP Status code này thông báo rằng request của client làm xung đột với trạng thái hiện tại của tài nguyên. 
+Như cái tên cũng đã mô tả, HTTP Status code này thông báo rằng request của client làm xung đột với trạng thái hiện tại của tài nguyên.
 
 Thường được sử dụng khi client gửi request mà xung đột với trạng thái hiện tại của tài nguyên.
 
@@ -1053,7 +1056,7 @@ note left of C: Server phản hồi với mã 410, thông báo rằng tài nguy�
 Hiện tại ít được sử dụng, thường sử dụng 404 Not Found thay thế. Và coi đó là một cách thông báo rằng tài nguyên không tồn tại.
 
 ### 411 Length Required
-HTTP Status code này thông báo rằng server yêu cầu client cung cấp thông tin về độ dài của body trong request. 
+HTTP Status code này thông báo rằng server yêu cầu client cung cấp thông tin về độ dài của body trong request.
 
 Thường được sử dụng khi client gửi request mà không có thông tin về độ dài của body.
 
@@ -1183,7 +1186,7 @@ note left of C: Server trả về lỗi 414, thông báo rằng URI không hợp
 curl 'https://thanhlv.com/?a=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'
 ```
 Response : `Error: URI Too Long% `
-::: 
+:::
 
 ### 415 Unsupported Media Type
 
@@ -1358,5 +1361,311 @@ note left of S: Server xác nhận tiêu đề điều kiện tiên quyết hợ
 S --> C: HTTP/1.1 200 OK\nContent-Type: application/json\n{ "message": "Resource updated successfully" }
 note left of C: Server xử lý yêu cầu và trả về phản hồi thành công.
 
+@enduml
+```
+
+### 429 Too Many Requests
+Đây là mộ trong những HTTP code phổ biến nhất, thông báo rằng client đã gửi quá nhiều yêu cầu trong một khoảng thời gian nhất định.
+
+Thông thường server sẽ cấu hình một số giới hạn về số lượng request mà client có thể gửi trong một khoảng thời gian nhất định( `Rate limit` ), nếu client vượt quá giới hạn này, server sẽ trả về 429 Too Many Requests.
+
+Rate limit thường được sử dụng để bảo vệ server khỏi các cuộc tấn công DDoS hoặc giúp server duy trì hiệu suất tốt hơn.
+
+Hoặc đôi khi gói cước dịch vụ bạn đăng ký với hệ thống có giới hạn số lượng request mà bạn có thể gửi trong một khoảng thời gian nhất định.
+
+
+```plantuml
+@startuml
+
+title HTTP 429 Too Many Requests - Rate Limiting Example
+
+participant "Client" as C
+participant "Server" as S
+
+== Case: Normal Request Flow ==
+
+C -> S: GET /resource HTTP/1.1\nHost: example.com
+S -> S: Xử lý yêu cầu
+S --> C: HTTP/1.1 200 OK\n{ "data": "Success" }
+
+C -> S: GET /resource HTTP/1.1\nHost: example.com
+S -> S: Xử lý yêu cầu
+S --> C: HTTP/1.1 200 OK\n{ "data": "Success" }
+
+... (Requests continue normally) ...
+
+== Case: Rate Limit Reached ==
+
+C -> S: GET /resource HTTP/1.1\nHost: example.com
+note right of S: Client đã gửi quá 100 yêu cầu/giây.
+
+S -> S: Kiểm tra giới hạn (rate limit)
+note left of S: Server phát hiện client đã vượt quá giới hạn yêu cầu.
+
+S --> C: HTTP/1.1 429 Too Many Requests\nRetry-After: 60\n{ "error": "Rate limit exceeded" }
+note left of C: Client bị chặn trong 1 phút.
+
+== Case: Retry After Limit Reset ==
+
+C -> C: Chờ 1 phút (60 giây)
+note right of C: Tuân thủ hướng dẫn từ server.
+
+C -> S: GET /resource HTTP/1.1\nHost: example.com
+note right of S: Client gửi lại yêu cầu sau thời gian chờ.
+
+S -> S: Kiểm tra giới hạn (rate limit)
+note left of S: Giới hạn được reset. Yêu cầu hợp lệ.
+
+S --> C: HTTP/1.1 200 OK\n{ "data": "Success" }
+
+@enduml
+```
+
+
+### 431 Request Header Fields Too Large
+Giống với 413 hoặc 414, HTTP code này thông báo rằng server không thể xử lý yêu cầu của client vì kích thước của các trường header quá lớn.
+
+Khi có một số trường header quá lớn, server sẽ trả về 431 Request Header Fields Too Large.
+
+Tuy nhiên HTTP Code này ít được sử dụng trong thực tế. Đa số các hệ thống sử dụng lun 400 cho điều này.
+
+#### Ví dụ:
+```shell
+curl --location 'https://thanhlv.com' \
+--header 'test: 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'
+```
+```plantuml
+@startuml
+
+title HTTP 431 Request Header Fields Too Large - Error and Fix Flow
+
+participant "Client" as C
+participant "Server" as S
+
+== Case: Error - Header Fields Too Large ==
+
+C -> S: POST /resource HTTP/1.1\nHost: example.com\nHeaders: {...large headers...}\nBody: {...}
+note right of S: Client gửi yêu cầu với tiêu đề quá lớn (e.g., nhiều cookie, tiêu đề dài).
+
+S -> S: Kiểm tra kích thước tiêu đề
+note left of S: Server phát hiện tổng kích thước tiêu đề vượt quá giới hạn.
+
+S --> C: HTTP/1.1 431 Request Header Fields Too Large\n{ "error": "Header fields too large" }
+note left of C: Server yêu cầu client giảm kích thước tiêu đề.
+
+== Case: Fix and Retry ==
+
+C -> C: Giảm kích thước tiêu đề (e.g., loại bỏ tiêu đề không cần thiết)
+note right of C: Client tối ưu lại tiêu đề yêu cầu.
+
+C -> S: POST /resource HTTP/1.1\nHost: example.com\nHeaders: {...reduced headers...}\nBody: {...}
+note right of S: Client gửi lại yêu cầu với tiêu đề hợp lệ.
+
+S -> S: Kiểm tra kích thước tiêu đề
+note left of S: Tiêu đề yêu cầu hợp lệ.
+
+S --> C: HTTP/1.1 200 OK\n{ "message": "Request successful" }
+note left of C: Server xử lý yêu cầu thành công.
+
+@enduml
+```
+
+## HTTP Status Code 5xx: Server Error
+Status code 5xx là nhóm mã lỗi HTTP dành cho các lỗi phát sinh từ phía server khi xử lý yêu cầu của client.
+Khi client nhận được mã lỗi 5xx, nó biết rằng lỗi không phải từ phía client mà từ phía server.
+
+### 500 Internal Server Error
+Đây là mã lỗi phổ biến nhất trong nhóm 5xx là lỗi ám ảnh của anh em theo BE, thông báo rằng server gặp lỗi không xác định khi xử lý yêu cầu của client.
+
+Có nhiều lỗi khác nhau có thể dẫn đến mã lỗi 500, bao gồm lỗi lập trình, lỗi cấu hình, lỗi hệ thống, lỗi cơ sở dữ liệu, v.v.
+
+Trên server các lập trình viên vẫn chưa handler được lỗi này, nó sẽ trả về mã lỗi 500 để thông báo cho client biết rằng server gặp lỗi không xác định và báo cáo lỗi đến quản trị viên hệ thống.
+
+```plantuml
+@startuml
+title HTTP 500 Internal Server Error - Example Flow
+
+participant "Client" as C
+participant "Server" as S
+participant "Database" as DB
+
+== Case: Server Error ==
+
+C -> S: GET /resource HTTP/1.1\nHost: example.com
+note right of S: Client gửi yêu cầu hợp lệ.
+
+S -> DB: Query Database for Resource
+note right of DB: Server cố gắng truy xuất dữ liệu từ cơ sở dữ liệu.
+
+DB -> S: Error: Database Connection Failed
+note left of S: Kết nối cơ sở dữ liệu thất bại.
+
+S -> S: Log Error Internally
+note left of S: Server ghi log lỗi để xử lý sau.
+
+S --> C: HTTP/1.1 500 Internal Server Error\n{ "error": "Internal Server Error" }
+note left of C: Server thông báo lỗi nội bộ đến client.
+@enduml
+```
+
+### 501 Not Implemented
+Mã lỗi 501 Not Implemented thông báo rằng server không hỗ trợ method được yêu cầu trong yêu cầu của client.
+
+Nó tương tự như mã lỗi 405 Method Not Allowed, nhưng 501 được sử dụng khi server không xác định được method yêu cầu có hỗ trợ hay không.
+
+Còn 405 được sử dụng khi server biết method và hiểu method, nhưng không cho phép sử dụng method đó. Còn 501 được sử dụng khi server không biết, không hiểu method đó.
+
+Một ví dụ phổ biến là hệ thống proxy.
+```plantuml
+@startuml
+title HTTP 501 Not Implemented - Proxy Example Flow
+
+participant "Client" as C
+participant "Proxy Server" as P
+participant "Origin Server" as O
+
+== Case: Unsupported Method through Proxy ==
+
+C -> P: PATCH /resource HTTP/1.1\nHost: example.com
+note right of P: Client gửi yêu cầu với phương thức PATCH qua Proxy.
+
+P -> O: PATCH /resource HTTP/1.1\nHost: example.com
+note right of O: Proxy chuyển tiếp yêu cầu đến Origin Server.
+
+O -> P: HTTP/1.1 501 Not Implemented\n{ "error": "The PATCH method is not supported by this server." }
+note left of P: Origin Server trả về lỗi 501 vì không hỗ trợ phương thức PATCH.
+
+P --> C: HTTP/1.1 501 Not Implemented\n{ "error": "The PATCH method is not supported by the origin server." }
+note left of C: Proxy phản hồi lỗi từ Origin Server đến Client.
+@enduml
+
+```
+
+### 502 Bad Gateway
+
+Mã lỗi 502 Bad Gateway thông báo rằng server hoạt động như một cổng thông tin (gateway) hoặc proxy, nhưng không thể nhận phản hồi từ server upstream.
+
+Khi client nhận được mã lỗi 502, nó biết rằng client đã kết nối đến proxy hoặc gateway nhưng khi proxy hoặc gateway cố gắng kết nối đến server upstream, nó không thể nhận được phản hồi từ server upstream. (Client ---Done---> Proxy ---Error---> Server Upstream)
+
+```plantuml
+@startuml
+title HTTP 502 Bad Gateway - Success and Failure Flows
+
+participant "Client" as C
+participant "Proxy Server" as P
+participant "Backend Server" as B
+
+== Case: Successful Response ==
+
+C -> P: GET /resource HTTP/1.1\nHost: example.com
+note right of P: Client gửi yêu cầu qua Proxy Server.
+
+P -> B: GET /resource HTTP/1.1\nHost: example.com
+note right of B: Proxy Server chuyển tiếp yêu cầu đến Backend Server.
+
+B -> P: HTTP/1.1 200 OK\n{ "data": "Resource content" }
+note left of P: Backend Server phản hồi thành công với dữ liệu.
+
+P --> C: HTTP/1.1 200 OK\n{ "data": "Resource content" }
+note left of C: Proxy Server gửi lại phản hồi thành công đến Client.
+
+== Case: 502 Bad Gateway Failure ==
+
+C -> P: GET /resource HTTP/1.1\nHost: example.com
+note right of P: Client gửi yêu cầu qua Proxy Server.
+
+P -> B: GET /resource HTTP/1.1\nHost: example.com
+note right of B: Proxy Server chuyển tiếp yêu cầu đến Backend Server.
+
+B -> P: Error: Connection error
+note left of P: Backend Server gặp lỗi khi xử lý hoặc không phản hồi.
+
+P --> C: HTTP/1.1 502 Bad Gateway\n{ "error": "Bad Gateway" }
+note left of C: Proxy Server phản hồi lỗi do không nhận được phản hồi hợp lệ từ Backend Server.
+@enduml
+```
+
+### 503 Service Unavailable
+Đây cũng là mã lỗi phổ biến trong nhóm 5xx, thông báo rằng server không thể xử lý yêu cầu của client tại thời điểm đó.
+
+Vấn đề có thể là do server quá tải, bảo trì, hoặc không thể xử lý yêu cầu vì lý do khác.
+
+Thông thường khi gặp mã lỗi 503, client có thể cấu hình thử lại sau một khoảng thời gian nhất định, ví dụ sau 1 phút.
+
+```plantuml
+@startuml
+title HTTP 503 Service Unavailable - Success and Failure Flows
+
+participant "Client" as C
+participant "Server" as S
+
+== Case: Successful Response ==
+
+C -> S: GET /resource HTTP/1.1\nHost: example.com
+note right of S: Client gửi yêu cầu đến Server.
+
+S -> S: Process Request
+note left of S: Server xử lý yêu cầu thành công.
+
+S --> C: HTTP/1.1 200 OK\n{ "data": "Resource content" }
+note left of C: Server trả về phản hồi thành công đến Client.
+
+== Case: 503 Service Unavailable Failure ==
+
+C -> S: GET /resource HTTP/1.1\nHost: example.com
+note right of S: Client gửi yêu cầu đến Server.
+
+S -> S: Check Server Status
+note left of S: Server quá tải hoặc bị tạm dừng để bảo trì.
+
+S --> C: HTTP/1.1 503 Service Unavailable\nRetry-After: 120\n{ "error": "Service temporarily unavailable" }
+note left of C: Server thông báo dịch vụ tạm thời không khả dụng và gợi ý thời gian thử lại sau.
+@enduml
+
+```
+
+### 504 Gateway Timeout
+
+Mã lỗi 504 Gateway Timeout thông báo rằng server hoạt động như một cổng thông tin (gateway) hoặc proxy, nhưng không thể nhận phản hồi từ server upstream trong khoảng thời gian quy định.
+
+Một ví dụ phổ biến là có cấu hình timeout chờ xử lý yêu cầu từ proxy đến server upstream, nếu server upstream không phản hồi trong khoảng thời gian timeout, proxy sẽ trả về mã lỗi 504.
+
+```plantuml
+@startuml
+title HTTP 504 Gateway Timeout - Success and Failure Flows
+
+participant "Client" as C
+participant "Proxy Server" as P
+participant "Upstream Server" as U
+
+== Case: Successful Response ==
+
+C -> P: GET /resource HTTP/1.1\nHost: example.com
+note right of P: Client gửi yêu cầu đến Proxy Server.
+
+P -> U: GET /resource HTTP/1.1\nHost: example.com
+note right of U: Proxy chuyển tiếp yêu cầu đến Upstream Server.
+
+U -> P: HTTP/1.1 200 OK\n{ "data": "Resource content" }
+note left of P: Upstream Server phản hồi thành công.
+
+P --> C: HTTP/1.1 200 OK\n{ "data": "Resource content" }
+note left of C: Proxy Server trả lại phản hồi thành công đến Client.
+
+== Case: 504 Gateway Timeout Failure ==
+
+C -> P: GET /resource HTTP/1.1\nHost: example.com
+note right of P: Client gửi yêu cầu đến Proxy Server.
+
+P -> U: GET /resource HTTP/1.1\nHost: example.com
+note right of U: Proxy chuyển tiếp yêu cầu đến Upstream Server.
+
+... Time passes (timeout) ...
+
+P -> U: No Response (Timeout)
+note left of P: Upstream Server không phản hồi trong thời gian quy định.
+
+P --> C: HTTP/1.1 504 Gateway Timeout\n{ "error": "Gateway Timeout" }
+note left of C: Proxy Server trả lỗi 504 thông báo timeout từ Upstream Server.
 @enduml
 ```
