@@ -1,7 +1,7 @@
 ---
 footer: true
 title: Ý nghĩa của các HTTP Status Code
-description: Về lựa chọn RESTful API hay gRPC chúng ta sẽ cần xem xét từng trường hợp cụ thể. Nó giống như là một chai nước tăng lực `monster` và một chai nước suối `lavie`. Mỗi chai nước sẽ phù hợp với một trường hợp cụ thể.
+description: HTTP Status Code được sử dụng để thông báo nhanh cho client về kết quả của request mà nó đã gửi đi. Client sẽ có cái nhìn tổng quan nhanh về kết quả của request chứ chưa cần kiểm tra kỹ content response, ví dụ thành công hay thất bại.
 authors: [ lethanh ]
 date: 2024-12-05
 outline: no
