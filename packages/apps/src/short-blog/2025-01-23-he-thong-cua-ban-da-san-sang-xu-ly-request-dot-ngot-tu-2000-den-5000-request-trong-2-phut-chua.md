@@ -5,7 +5,7 @@ description: Trung bình google search của google nhận khoảng từ 40.000 
 authors: [ lethanh ]
 date: 2025-01-23
 outline: deep
-image: /assets/ngan-hang.nYF7C9AG.webp
+image: /assets/trong_thang_1_2025.IDt9CGlE.png
 draft: false
 ---
 # Hệ thống của bạn đã sẵn sàng xử lý request đột ngột từ 2.000 request/s đến 5.000 request/s 2 phút chưa ?
