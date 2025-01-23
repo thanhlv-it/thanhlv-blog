@@ -6,7 +6,7 @@ authors: [ lethanh ]
 date: 2024-12-05
 outline: no
 # image: /assets/gRPC-vs-REST.zQiSJpLn.jpg
-draft: true
+draft: false
 ---
 
 
@@ -56,6 +56,8 @@ curl -X POST http://api.example.com/users -H "Authorization: Bearer TOKEN" \
 
 
 Bài viết này mình sẽ chia sẻ với các bạn về ý nghĩa của các HTTP Status Code thông dụng và trường hợp sử dụng chúng.
+
+![http-status-code](images/2024-12-05-y-nghia-cua-cac-http-status-code/class-of-http-status-code.jpeg)
 
 ## HTTP Status code là gì ?
 Theo tài liệu rfc của HTTP thì [HTTP code](https://www.rfc-editor.org/rfc/rfc2616.html#page-39) là một số nguyên không âm gồm 3 chữ số, mỗi một số đại diện cho một ý nghĩa cụ thể.
