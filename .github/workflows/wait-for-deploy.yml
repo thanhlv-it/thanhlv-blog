@@ -1,0 +1,21 @@
+name: Wait for Deploy
+
+on:
+  workflow_run:
+    workflows:
+      - pages-build-deployment
+    types:
+      - completed
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Send Telegram Message
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: -1002300511836
+        run: |
+          curl -s --data "chat_id=$TELEGRAM_CHAT_ID&text=🚀 Deploy to thanhlv.com completed successfully!" \
+          "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage"

@@ -1,0 +1,30 @@
+{
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "yarn run ci && pnpm -C packages/apps run dev",
+    "build_github": "yarn run ci && pnpm -C packages/apps run build_github",
+    "ci": "npm i -g pnpm && pnpm install"
+  },
+  "devDependencies": {
+    "blog": "workspace:*",
+    "@vue/theme": "workspace:*"
+  },
+  "pnpm": {
+    "overrides": {
+      "@vitejs/plugin-vue": "5.0.0-beta.1",
+      "blog": "workspace:*"
+    },
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search",
+        "react",
+        "react-dom",
+        "@types/react",
+        "search-insights"
+      ]
+    }
+  }
+}

@@ -1,0 +1,110 @@
+name: CI
+permissions:
+  contents: write  # Cho phép token có quyền ghi vào repository
+on:
+  push:
+    branches:
+      - main
+# tạo concurrency để có 1 job duy nhất chạy và nếu có job mới cùng group sẽ cancel
+concurrency:
+  group: build-and-deploy-live
+  cancel-in-progress: true  # Hủy job đang chạy cùng group
+
+run-name: Build live
+
+jobs:
+  build_app:
+    runs-on: ubuntu-latest
+    name:  Build live
+    environment: prod
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 10  # Lấy ít nhất 10 commit gần nhất
+      - name: Send Telegram Message
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: -1002300511836
+        run: |
+          curl -s --data "chat_id=$TELEGRAM_CHAT_ID&text=🚀 Build thanhlv.com with build number: ${{github.run_number}}, Start" \
+          "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage"
+      - name: Check for changes in folders packages
+        id: check_folders
+        run: |
+          FOLDER="./packages/"
+
+          # Kiểm tra xem có sự thay đổi nào trong folder A
+          CHANGED_FILES=$(git diff --name-only HEAD~1..HEAD -- "$FOLDER")
+          
+          # Kiểm tra xem có sự thay đổi nào không
+             if [ -z "$CHANGED_FILES" ]; then
+            echo "At least one of the folders has changes."
+            echo "changed=true" >> $GITHUB_ENV
+          else
+            if git log -1 --pretty=%B | grep -q 'force_build:'; then
+            echo "changed=true" >> $GITHUB_ENV
+            else          
+            echo "Neither of the folders has changes."
+            echo "changed=false" >> $GITHUB_ENV
+            fi
+          fi
+      - name: Set up Node.js
+        if: env.changed == 'true'
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.12'
+
+      - name: Install pnpm
+        run: npm i -g pnpm
+
+      - name: Check if last commit contains 'no_cache:'
+        id: check-commit
+        run: |
+          if git log -1 --pretty=%B | grep -q 'no_cache:'; then
+          echo "SKIP_CACHE=true" >> $GITHUB_ENV
+          else
+          echo "SKIP_CACHE=false" >> $GITHUB_ENV
+          fi
+
+      - name: Cache Node.js modules
+        if: env.SKIP_CACHE == 'false'
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/packages/apps/src/about/author/thanhlv-vi.md') }}
+          restore-keys: |
+            key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/packages/apps/src/about/author/thanhlv-vi.md') }}
+      - name: Send Telegram Message
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: -1002300511836
+        run: |
+          curl -s --data "chat_id=$TELEGRAM_CHAT_ID&text=🚀 Build thanhlv.com with build number: ${{github.run_number}}, Install deps" \
+          "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage"
+      - name: Install deps
+        run: pnpm install
+      - name: Send Telegram Message
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: -1002300511836
+        run: |
+          curl -s --data "chat_id=$TELEGRAM_CHAT_ID&text=🚀 Build thanhlv.com with build number: ${{github.run_number}}, Build html" \
+          "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage"
+      - name: Build app
+        run: npm run build_github
+      - name: Send Telegram Message
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: -1002300511836
+        run: |
+          curl -s --data "chat_id=$TELEGRAM_CHAT_ID&text=🚀 Build thanhlv.com with build number: ${{github.run_number}}, Deploy to thanhlv.com" \
+          "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage"
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          publish_branch: gh-pages

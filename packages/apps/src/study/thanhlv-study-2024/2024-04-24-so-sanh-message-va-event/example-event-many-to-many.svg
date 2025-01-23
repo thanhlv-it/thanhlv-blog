@@ -1,0 +1,39 @@
+<svg width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Draw Publishers -->
+  <rect x="10" y="10" width="100" height="50" fill="skyblue" />
+  <text x="15" y="35" fill="black">Web</text>
+
+  <rect x="120" y="10" width="100" height="50" fill="skyblue" />
+  <text x="125" y="35" fill="black">Ứng dụng</text>
+
+  <rect x="230" y="10" width="100" height="50" fill="skyblue" />
+  <text x="235" y="35" fill="black">Đối tác</text>
+
+  <rect x="340" y="10" width="100" height="50" fill="skyblue" />
+  <text x="345" y="35" fill="black">Cò trực tiếp</text>
+
+  <!-- Event Box -->
+  <rect x="100" y="80" width="200" height="50" fill="orange" />
+  <text x="110" y="105" fill="black">Tạo đơn hàng mới</text>
+
+  <!-- Lines to Event Box -->
+  <line x1="60" y1="60" x2="200" y2="80" stroke="red" stroke-width="2"/>
+  <line x1="170" y1="60" x2="200" y2="80" stroke="red" stroke-width="2"/>
+  <line x1="280" y1="60" x2="200" y2="80" stroke="red" stroke-width="2"/>
+  <line x1="390" y1="60" x2="200" y2="80" stroke="red" stroke-width="2"/>
+
+  <!-- Draw Subscribers -->
+  <rect x="10" y="150" width="100" height="50" fill="lightgreen" />
+  <text x="15" y="175" fill="black">Quản lý kho</text>
+
+  <rect x="120" y="150" width="100" height="50" fill="lightgreen" />
+  <text x="125" y="175" fill="black">Thanh toán</text>
+
+  <rect x="230" y="150" width="100" height="50" fill="lightgreen" />
+  <text x="235" y="175" fill="black">Giao hàng</text>
+
+  <!-- Lines to Subscribers -->
+  <line x1="200" y1="130" x2="60" y2="150" stroke="red" stroke-width="2"/>
+  <line x1="200" y1="130" x2="170" y2="150" stroke="red" stroke-width="2"/>
+  <line x1="200" y1="130" x2="280" y2="150" stroke="red" stroke-width="2"/>
+</svg>

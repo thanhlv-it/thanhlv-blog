@@ -1,0 +1,36 @@
+<svg width="800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Draw the boxes representing each step -->
+  <rect x="10" y="10" width="120" height="50" fill="lightblue" />
+  <rect x="140" y="10" width="120" height="50" fill="lightgreen" />
+  <rect x="270" y="10" width="120" height="50" fill="lightcoral" />
+  <rect x="400" y="10" width="120" height="50" fill="lightpink" />
+  <rect x="530" y="10" width="120" height="50" fill="lightgoldenrodyellow" />
+  <rect x="660" y="10" width="120" height="50" fill="lightseagreen" />
+
+  <!-- Connect the boxes with lines -->
+  <line x1="130" y1="35" x2="140" y2="35" stroke="black" />
+  <line x1="260" y1="35" x2="270" y2="35" stroke="black" />
+  <line x1="390" y1="35" x2="400" y2="35" stroke="black" />
+  <line x1="520" y1="35" x2="530" y2="35" stroke="black" />
+  <line x1="650" y1="35" x2="660" y2="35" stroke="black" />
+
+  <!-- Add text labels -->
+  <text x="20" y="35" fill="black" font-family="Verdana" font-size="12">User Request</text>
+  <text x="150" y="35" fill="black" font-family="Verdana" font-size="12">DNS Lookup</text>
+  <text x="280" y="35" fill="black" font-family="Verdana" font-size="12">Connect</text>
+  <text x="410" y="35" fill="black" font-family="Verdana" font-size="12">Send HTTP Request</text>
+  <text x="540" y="35" fill="black" font-family="Verdana" font-size="12">Process Request</text>
+  <text x="670" y="35" fill="black" font-family="Verdana" font-size="12">Display Page</text>
+
+  <!-- Add Arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+    </marker>
+  </defs>
+  <line x1="130" y1="35" x2="140" y2="35" stroke="black" marker-end="url(#arrow)" />
+  <line x1="260" y1="35" x2="270" y2="35" stroke="black" marker-end="url(#arrow)" />
+  <line x1="390" y1="35" x2="400" y2="35" stroke="black" marker-end="url(#arrow)" />
+  <line x1="520" y1="35" x2="530" y2="35" stroke="black" marker-end="url(#arrow)" />
+  <line x1="650" y1="35" x2="660" y2="35" stroke="black" marker-end="url(#arrow)" />
+</svg>

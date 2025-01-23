@@ -1,0 +1,5 @@
+# Algolia-Crawler-Verif: 46B9A60659D1346F
+
+User-agent: *
+Allow: /
+Sitemap: https://thanhlv.com/sitemap.xml

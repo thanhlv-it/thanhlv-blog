@@ -1,0 +1,45 @@
+name: Build
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Check Build and Test - ${{ github.event.head_commit.message }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.12'
+
+      - name: Install pnpm
+        run: npm i -g pnpm
+
+      - name: Check if last commit contains 'no_cache:'
+        id: check-commit
+        run: |
+          if git log -1 --pretty=%B | grep -q 'no_cache:'; then
+          echo "SKIP_CACHE=true" >> $GITHUB_ENV
+          else
+          echo "SKIP_CACHE=false" >> $GITHUB_ENV
+          fi
+
+      - name: Cache Node.js modules
+        if: env.SKIP_CACHE == 'false'
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install deps
+        run: pnpm install
+      - name: Build
+        run: npm run build_github
