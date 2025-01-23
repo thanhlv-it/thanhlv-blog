@@ -70,6 +70,59 @@ Tuy nhiên, có nhiều status code khi browser nhận về, browser sẽ thực
 
 Cùng bắt đầu với các nhóm status code nhé.
 
+| **Mã Trạng Thái** | **Mô Tả Ngắn** | **Vị Trí Trong Tài Liệu** |
+|-------------------|----------------|---------------------------|
+| 100               | Continue - Yêu cầu đã được nhận, client có thể tiếp tục gửi phần thân của yêu cầu. | [Chi tiết](#http-status-code-1xx-informational) |
+| 101               | Switching Protocols - Server đồng ý chuyển đổi giao thức. | [Chi tiết](#http-status-code-1xx-informational) |
+| 102               | Processing - Server đang xử lý yêu cầu nhưng chưa hoàn thành. | [Chi tiết](#http-status-code-1xx-informational) |
+| 103               | Early Hints - Gợi ý tài nguyên để tải trước mà chưa có kết quả chính thức. | [Chi tiết](#http-status-code-1xx-informational) |
+| 200               | OK - Yêu cầu đã thành công. | [Chi tiết](#http-status-code-2xx-success) |
+| 201               | Created - Yêu cầu đã thành công và một tài nguyên mới đã được tạo ra. | [Chi tiết](#http-status-code-2xx-success) |
+| 202               | Accepted - Yêu cầu đã được chấp nhận để xử lý, nhưng chưa hoàn thành. | [Chi tiết](#http-status-code-2xx-success) |
+| 203               | Non-Authoritative Information - Thông tin trả về không trực tiếp từ server gốc. | [Chi tiết](#http-status-code-2xx-success) |
+| 204               | No Content - Yêu cầu thành công nhưng không có nội dung nào để trả về. | [Chi tiết](#http-status-code-2xx-success) |
+| 205               | Reset Content - Yêu cầu thành công nhưng cần reset form nhập liệu. | [Chi tiết](#http-status-code-2xx-success) |
+| 206               | Partial Content - Server chỉ gửi một phần của tài nguyên. | [Chi tiết](#http-status-code-2xx-success) |
+| 207               | Multi-Status - Trả về nhiều trạng thái cho nhiều tài nguyên khác nhau. | [Chi tiết](#http-status-code-2xx-success) |
+| 300               | Multiple Choices - Yêu cầu có nhiều đáp ứng có thể, và một lựa chọn cụ thể cần được thực hiện. | [Chi tiết](#http-status-code-3xx-redirection) |
+| 301               | Moved Permanently - Tài nguyên đã di chuyển vĩnh viễn đến URL mới. | [Chi tiết](#http-status-code-3xx-redirection) |
+| 302               | Found - Tài nguyên được tìm thấy tạm thời tại một URL khác. | [Chi tiết](#http-status-code-3xx-redirection) |
+| 303               | See Other - Tài nguyên nên được truy cập tại một URL khác thông qua GET. | [Chi tiết](#http-status-code-3xx-redirection) |
+| 304               | Not Modified - Tài nguyên không có sự thay đổi nào kể từ lần yêu cầu cuối. | [Chi tiết](#http-status-code-3xx-redirection) |
+| 305               | Use Proxy - Phải sử dụng proxy để truy cập tài nguyên. | [Chi tiết](#http-status-code-3xx-redirection) |
+| 306               | Switch Proxy - Không được sử dụng nữa, đã bị loại bỏ. | [Chi tiết](#http-status-code-3xx-redirection) |
+| 307               | Temporary Redirect - Tài nguyên đã di chuyển tạm thời đến một URL khác, nhưng giữ nguyên phương thức yêu cầu. | [Chi tiết](#http-status-code-3xx-redirection) |
+| 308               | Permanent Redirect - Tài nguyên đã di chuyển vĩnh viễn đến một URL khác, nhưng giữ nguyên phương thức yêu cầu. | [Chi tiết](#http-status-code-3xx-redirection) |
+| 400               | Bad Request - Yêu cầu không hợp lệ được gửi bởi client. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 401               | Unauthorized - Yêu cầu cần xác thực. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 402               | Payment Required - Dự kiến cho tương lai, chưa chuẩn hóa. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 403               | Forbidden - Yêu cầu không được phép, dù đã xác thực. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 404               | Not Found - Không tìm thấy tài nguyên yêu cầu. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 405               | Method Not Allowed - Phương thức yêu cầu không được phép. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 406               | Not Acceptable - Không thể trả về dữ liệu theo định dạng yêu cầu. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 407               | Proxy Authentication Required - Cần xác thực với proxy. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 408               | Request Timeout - Server hết thời gian chờ yêu cầu từ client. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 409               | Conflict - Yêu cầu làm xung đột với trạng thái tài nguyên hiện tại. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 410               | Gone - Tài nguyên đã bị xóa và không thể phục hồi. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 411               | Length Required - Yêu cầu độ dài không được phép mà không có `Content-Length`. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 412               | Precondition Failed - Điều kiện tiên quyết không được thỏa mãn. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 413               | Payload Too Large - Payload của yêu cầu quá lớn để xử lý. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 414               | URI Too Long - URI của yêu cầu quá dài. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 415               | Unsupported Media Type - Kiểu phương tiện không được hỗ trợ trong yêu cầu. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 416               | Range Not Satisfiable - Không thể đáp ứng phần Range yêu cầu. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 417               | Expectation Failed - Expect header không được đáp ứng. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 418               | I'm a teapot - Trò đùa trong RFC 2324. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 421               | Misdirected Request - Yêu cầu hướng sai máy chủ. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 422               | Unprocessable Entity - Dữ liệu không hợp lệ mặc dù đúng định dạng. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 428               | Precondition Required - Thiếu điều kiện cần thiết trong yêu cầu. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 429               | Too Many Requests - Client đã gửi quá nhiều yêu cầu. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 431               | Request Header Fields Too Large - Các trường header quá lớn. | [Chi tiết](#http-status-code-4xx-client-error) |
+| 500               | Internal Server Error - Lỗi không xác định từ server. | [Chi tiết](#http-status-code-5xx-server-error) |
+| 501               | Not Implemented - Server không hỗ trợ chức năng yêu cầu. | [Chi tiết](#http-status-code-5xx-server-error) |
+| 502               | Bad Gateway - Server acting as a gateway không nhận phản hồi từ upstream. | [Chi tiết](#http-status-code-5xx-server-error) |
+| 503               | Service Unavailable - Server quá tải hoặc đang bảo trì. | [Chi tiết](#http-status-code-5xx-server-error) |
+| 504               | Gateway Timeout - Không nhận phản hồi từ upstream server trong khoảng thời gian quy định. | [Chi tiết](#http-status-code-5xx-server-error) |
+
 ## HTTP Status Code 1xx: Informational
 1xx là nhóm status code dùng để thông báo cho client rằng request của nó đã được nhận và đang xử lý. Client không cần phải làm gì cả.
 
