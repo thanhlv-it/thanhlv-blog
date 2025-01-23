@@ -4,7 +4,7 @@ title: Ý nghĩa của các HTTP Status Code
 description: Về lựa chọn RESTful API hay gRPC chúng ta sẽ cần xem xét từng trường hợp cụ thể. Nó giống như là một chai nước tăng lực `monster` và một chai nước suối `lavie`. Mỗi chai nước sẽ phù hợp với một trường hợp cụ thể.
 authors: [ lethanh ]
 date: 2024-12-05
-outline: deep
+outline: no
 # image: /assets/gRPC-vs-REST.zQiSJpLn.jpg
 draft: true
 ---
@@ -68,7 +68,10 @@ Mỗi nhóm sẽ có ý nghĩa cụ thể, đôi khi chỉ mang ý nghĩa chung 
 
 Tuy nhiên, có nhiều status code khi browser nhận về, browser sẽ thực hiện hành vi khác nhau, ví dụ như `301`, `302` sẽ chuyển hướng.
 
-Cùng bắt đầu với các nhóm status code nhé.
+### Bảng tóm tắt ý nghĩa các HTTP Status Code
+Thực tế có nhiều rất http status code, nhiều status code không được sử dụng nhiều nên chính mình đôi khi cũng không nhớ hết.
+
+Mình thường dụng bảng tóm tắt ý nghĩa các HTTP Status Code để tham khảo nhanh mỗi khi cần.
 
 | **Mã Trạng Thái** | **Mô Tả Ngắn**                                                                                                 | **Vị Trí Trong Tài Liệu** |
 |-------------------|----------------------------------------------------------------------------------------------------------------|---------------------------|
@@ -122,6 +125,7 @@ Cùng bắt đầu với các nhóm status code nhé.
 | 502               | Bad Gateway - Server acting as a gateway không nhận phản hồi từ upstream.                                      | [Chi tiết](#502)          |
 | 503               | Service Unavailable - Server quá tải hoặc đang bảo trì.                                                        | [Chi tiết](#503)          |
 | 504               | Gateway Timeout - Không nhận phản hồi từ upstream server trong khoảng thời gian quy định.                      | [Chi tiết](#504)          |
+| 505               | HTTP Version Not Supported - Server không hỗ trợ phiên bản HTTP của yêu cầu.                                   | [Chi tiết](#505)          |
 
 ## HTTP Status Code 1xx: Informational
 1xx là nhóm status code dùng để thông báo cho client rằng request của nó đã được nhận và đang xử lý. Client không cần phải làm gì cả.
@@ -1720,3 +1724,49 @@ P --> C: HTTP/1.1 504 Gateway Timeout\n{ "error": "Gateway Timeout" }
 note left of C: Proxy Server trả lỗi 504 thông báo timeout từ Upstream Server.
 @enduml
 ```
+
+### 505 HTTP Version Not Supported {#505}
+
+Mã lỗi 505 HTTP Version Not Supported thông báo rằng server không hỗ trợ phiên bản HTTP được yêu cầu trong yêu cầu của client.
+
+Ví dụ bạn gửi yêu cầu với HTTP/1.0 nhưng server chỉ hỗ trợ HTTP/1.1, server sẽ trả về mã lỗi 505.
+
+```plantuml
+@startuml
+title HTTP 505 HTTP Version Not Supported - Example Flow
+
+participant "Client" as C
+participant "Server" as S
+
+== Case: Unsupported HTTP Version ==
+
+C -> S: GET /resource HTTP/1.0\nHost: example.com
+note right of S: Client gửi yêu cầu sử dụng phiên bản HTTP/1.0.
+
+S -> S: Check HTTP Version Support
+note left of S: Server kiểm tra phiên bản HTTP được hỗ trợ (chỉ hỗ trợ HTTP/1.1).
+
+S --> C: HTTP/1.1 505 HTTP Version Not Supported\n{ "error": "The HTTP version 1.0 is not supported by this server." }
+note left of C: Server trả về lỗi 505 vì không hỗ trợ HTTP/1.0.
+@enduml
+```
+
+### Tổng kết
+
+Các HTTP Status Codes không chỉ giúp chúng ta hiểu rõ hơn về giao tiếp giữa client và server, mà còn giúp cải thiện chức năng của ứng dụng web bằng cách phản hồi chính xác những gì đang xảy ra trong các yêu cầu HTTP. 
+
+Các mã trạng thái cung cấp thông tin quý giá về kết quả của yêu cầu mà không cần xử lý chi tiết nội dung trả về, giúp các nhà phát triển xác định và xử lý các vấn đề một cách hiệu quả.
+
+### Một số lưu ý
+
+1. **Chọn mã trạng thái phù hợp**: Đảm bảo sử dụng đúng mã status để phản ánh chính xác tình trạng request và phản hồi. Việc này giúp người dùng và các nhà phát triển khác hiểu rõ hơn về kết quả của các yêu cầu HTTP.
+
+2. **Tránh sử dụng các mã lỗi ít gặp**: Một số mã như 418 hoặc 306 không cần thiết trong các ứng dụng thực tế và chỉ nên dùng mã nào được cập nhật theo chuẩn mới nhất của HTTP.
+
+3. **Kiểm tra và xử lý lỗi kịp thời**: Sử dụng các mã 5xx để thông báo lỗi từ phía server và cần thêm tính năng ghi log để xử lý lỗi hiệu quả hơn nhằm tránh ảnh hưởng đến trải nghiệm người dùng.
+
+### Chào cảm ơn
+
+Cảm ơn bạn đã theo dõi blog này. Hy vọng rằng thông qua các thông tin và ví dụ được cung cấp, bạn có thể ứng dụng hiệu quả hơn trong việc phát triển và duy trì các dịch vụ web của mình.
+
+Hãy tiếp tục quay lại để cập nhật thêm những kiến thức mới và mọi ý kiến đóng góp của bạn đều là vô cùng quý giá đối với chúng tôi!
