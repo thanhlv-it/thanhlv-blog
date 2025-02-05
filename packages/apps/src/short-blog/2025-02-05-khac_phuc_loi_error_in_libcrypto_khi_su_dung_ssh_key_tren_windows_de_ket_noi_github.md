@@ -55,6 +55,8 @@ end note
 @enduml
 
 ```
+![1](images/2025-02-05-khac_phuc_loi_error_in_libcrypto_khi_su_dung_ssh_key_tren_windows_de_ket_noi_github/ssh-key-fix.svg)
+
 ## Giải pháp: Tái tạo lại private key trên Windows
 
 Để khắc phục lỗi, bạn có thể sử dụng lệnh sau trên Windows để thay đổi (tái tạo) passphrase của private key:
