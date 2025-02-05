@@ -61,6 +61,12 @@ ssh-keygen -p -f /c/Users/solit/.ssh/data/github/lethanh9398/id_ed25519
 - Nhập passphrase cũ khi được yêu cầu.
 - Khi được yêu cầu nhập passphrase mới, bạn có thể nhập lại passphrase cũ hoặc nhập passphrase mới theo ý bạn
 
+::: tip điền mật khẩu cũ và mới trong câu lệnh luôn
+```bash
+ssh-keygen -p -f "C:\Users\solit\.ssh\data\github\solitarysp\id_ed25519.key" -P "old_pass" -N "new_pass"
+```
+
+:::
 4. Kiểm tra lại kết nối:
 Sau khi tái tạo lại private key, thử chạy lại lệnh `git clone`, `git pull` hoặc `git push` để kiểm tra kết nối đến GitHub.
 
