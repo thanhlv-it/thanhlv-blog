@@ -31,9 +31,57 @@ Sau khi đọc tài liệu [trên GitHub](https://docs.github.com/en/authenticat
 ## Nguyên nhân
 Qua quá trình nghiên cứu, tôi nhận ra rằng openssh trên Windows và macOS có sự khác nhau về cách hoạt động và phiên bản. Sự khác biệt này đôi khi dẫn đến lỗi khi Windows cố gắng đọc private key được tạo trên macOS, cụ thể là `lỗi error in libcrypto`.
 
+```plantuml
+@startuml
+title ❌ Lỗi "error in libcrypto" trên Windows
+
+participant "Windows\nGit Client" as Win
+participant "OpenSSH\non Windows" as OpenSSH_Win
+participant "Private Key\n(macOS Format)" as PrivateKey
+participant "GitHub" as GitHub
+
+Win -> OpenSSH_Win: Load private key (macOS format)
+OpenSSH_Win -> PrivateKey: Read key
+PrivateKey -> OpenSSH_Win: ❌ error in libcrypto
+OpenSSH_Win -> Win: ❌ Permission denied (publickey)
+Win -[#red]> GitHub: ❌ Could not authenticate
+
+note right of Win
+Lỗi xảy ra do private key 
+được tạo trên macOS không 
+tương thích với Windows
+end note
+
+@enduml
+
+```
 ## Giải pháp: Tái tạo lại private key trên Windows
 
 Để khắc phục lỗi, bạn có thể sử dụng lệnh sau trên Windows để thay đổi (tái tạo) passphrase của private key:
+
+```plantuml
+@startuml
+title 🔄 Khắc phục lỗi bằng cách tái tạo passphrase
+
+participant "Windows\nGit Client" as Win
+participant "OpenSSH\non Windows" as OpenSSH_Win
+participant "Private Key" as PrivateKey
+
+Win -> OpenSSH_Win: ssh-keygen -p -f {private_key_path}
+OpenSSH_Win -> Win: Nhập passphrase cũ
+Win -> OpenSSH_Win: Nhập passphrase mới hoặc giữ nguyên
+OpenSSH_Win -> PrivateKey: 🔄 Regenerate key in Windows-compatible format
+OpenSSH_Win -> Win: ✅ Private key updated
+
+note right of Win
+Private key được tái tạo 
+theo định dạng Windows 
+giúp khắc phục lỗi
+end note
+
+@enduml
+
+```
 
 ```bash 
 ssh-keygen -p -f {đường_dẫn_tới_private_key}
@@ -70,50 +118,21 @@ ssh-keygen -p -f "C:\Users\solit\.ssh\data\github\solitarysp\id_ed25519.key" -P 
 4. Kiểm tra lại kết nối:
 Sau khi tái tạo lại private key, thử chạy lại lệnh `git clone`, `git pull` hoặc `git push` để kiểm tra kết nối đến GitHub.
 
-## Kết quả
-Sau khi thực hiện các bước trên, tôi đã pull và push code lên GitHub thành công mà không gặp lỗi
-
-## Lưu ý
-
-- **Sao lưu private key**: Luôn luôn backup private key trước khi thay đổi để tránh mất mát dữ liệu quan trọng.
-- **Đồng bộ môi trường**: Khi chuyển đổi giữa các hệ điều hành, hãy lưu ý rằng các phiên bản và cách thức hoạt động của openssh có thể khác nhau. Việc tái tạo lại key theo định dạng phù hợp với từng hệ điều hành sẽ giúp tránh được các lỗi không mong muốn.
-
-
 ```plantuml
 @startuml
-title Lỗi "error in libcrypto" khi dùng SSH Key trên Windows
+title ✅ Kết nối GitHub thành công sau khi sửa lỗi
 
 participant "Windows\nGit Client" as Win
 participant "OpenSSH\non Windows" as OpenSSH_Win
-participant "Private Key\n(macOS Format)" as PrivateKey
+participant "Private Key\n(Windows Format)" as PrivateKey
 participant "GitHub" as GitHub
-
-Win -> OpenSSH_Win: Load private key (macOS format)
-OpenSSH_Win -> PrivateKey: Read key
-PrivateKey -> OpenSSH_Win: error in libcrypto
-OpenSSH_Win -> Win: Permission denied (publickey)
-
-note right of Win
-Lỗi xảy ra do private key 
-được tạo trên macOS không 
-tương thích hoàn toàn với Windows
-end note
-
-== Khắc phục lỗi bằng cách tái tạo passphrase ==
-
-Win -> OpenSSH_Win: ssh-keygen -p -f {private_key_path}
-OpenSSH_Win -> Win: Nhập passphrase cũ
-Win -> OpenSSH_Win: Nhập passphrase mới hoặc giữ nguyên
-OpenSSH_Win -> PrivateKey: Regenerate key in Windows-compatible format
-
-== Kiểm tra lại kết nối ==
 
 Win -> OpenSSH_Win: Load private key (Windows format)
 OpenSSH_Win -> PrivateKey: Read key
-PrivateKey -> OpenSSH_Win: Success
-OpenSSH_Win -> Win: Key loaded successfully
-Win -> GitHub: Authenticate via SSH
-GitHub -> Win: Access granted!
+PrivateKey -> OpenSSH_Win: ✅ Success
+OpenSSH_Win -> Win: ✅ Key loaded successfully
+Win -> GitHub: 🔑 Authenticate via SSH
+GitHub -> Win: ✅ Access granted!
 
 note right of Win
 Lỗi đã được khắc phục, 
@@ -121,4 +140,12 @@ có thể pull/push code bình thường
 end note
 
 @enduml
+
 ```
+## Kết quả
+Sau khi thực hiện các bước trên, tôi đã pull và push code lên GitHub thành công mà không gặp lỗi
+
+## Lưu ý
+
+- **Sao lưu private key**: Luôn luôn backup private key trước khi thay đổi để tránh mất mát dữ liệu quan trọng.
+- **Đồng bộ môi trường**: Khi chuyển đổi giữa các hệ điều hành, hãy lưu ý rằng các phiên bản và cách thức hoạt động của openssh có thể khác nhau. Việc tái tạo lại key theo định dạng phù hợp với từng hệ điều hành sẽ giúp tránh được các lỗi không mong muốn.
