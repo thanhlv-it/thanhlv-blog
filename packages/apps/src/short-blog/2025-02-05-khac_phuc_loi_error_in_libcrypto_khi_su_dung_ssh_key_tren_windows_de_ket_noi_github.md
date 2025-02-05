@@ -5,7 +5,7 @@ description: Hướng dẫn khắc phục lỗi “error in libcrypto” khi cop
 authors: [ lethanh ]
 date: 2025-02-05
 outline: deep
-image: /assets/ssh-key-fix.jpg
+image: /assets/ssh-key-fix.keRxdqGK.svg
 draft: false
 ---
 
@@ -55,7 +55,6 @@ end note
 @enduml
 
 ```
-![1](images/2025-02-05-khac_phuc_loi_error_in_libcrypto_khi_su_dung_ssh_key_tren_windows_de_ket_noi_github/ssh-key-fix.svg)
 
 ## Giải pháp: Tái tạo lại private key trên Windows
 
