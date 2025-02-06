@@ -327,6 +327,22 @@ Tuy nhiên việc đồng bộ luôn sẽ có độ trễ. Nhìn minh họa dư�
 Trong thực tế, một độ chễ nhỏ khoảng vài bản khi không phải là vấn đề, nhưng nếu độ chễ quá lớn có thể dẫn đến mất dữ liệu.=========
 
 Khi dữ liệu ở followers bắt kịp với Leaders thì nó được coi là ISR [(In-Sync Replicas) ](https://www.geeksforgeeks.org/understanding-in-sync-replicas-isr-in-apache-kafka/). Hiểu đơn giản ISR là các follower đã đồng bộ đầy đủ dữ liệu với leader.
+### Mức độ replication
+Replication factor được cấu hình để xác định số lượng các bản sao của mỗi partition. Ví dụ, nếu replication factor là 3, mỗi partition sẽ có 3 bản sao, một leader và hai follower.
+Để đảm bảo an toàn dữ liệu, kafka khuyến nghị replication factor ít nhất là 3, nếu một broker không khả dụng, dữ liệu vẫn còn ở các broker khác.
+
+### Phân bổ
+Các partition không nằm trên một broker duy nhất mà được trải rộng trên các broker trong cluster. Không có broker nào là leader cho tất cả các phân vùng của một topic nhất định.
+
+## acknowledgments
+Replication và acknowledgments là 2 khái niệm quan trọng trong Kafka, liên quan đến việc đảm bảo tính toàn vẹn và đồng bộ dữ liệu.
+
+Mục đích của acknowledgments là đảm bảo rằng dữ liệu đã được ghi vào tất cả các follower đảm bảo tính toàn vẹn và bền vững của dữ liệu.
+
+Kafka hỗ trợ 3 cấp độ acknowledgments:
+- `acks=0`: Producer không chờ ACK từ broker nào, Producer coi như là thành công khi đã gửi dữ liệu thành công đến Broker. Đây là cấp độ nhanh nhất nhưng không đảm bảo tính toàn vẹn dữ liệu.
+- `acks=1`: Producer chờ ACK từ leader, dữ liệu được ghi vào leader và producer sẽ nhận ACK từ leader. Đây là cấp độ mặc định và đảm bảo tính toàn vẹn dữ liệu ở mức thấp nhất là leader đã ghi thành công.
+- `acks=all` hoặc `acks=-1`: Producer chờ ACK từ tất cả các follower, dữ liệu được ghi vào leader và tất cả các follower. Đây là cấp độ đảm bảo tính toàn vẹn dữ liệu cao nhất nhưng tốn nhiều thời gian nhất.
 
 
 ## Một số lưu ý về Kafka Brokers
