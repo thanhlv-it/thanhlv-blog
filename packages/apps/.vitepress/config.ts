@@ -312,7 +312,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       md.use(headerPlugin)
       md.use(markdownItTextualUml, {
         imageFormat: 'svg',
-        server: 'https://uml.planttext.com/plantuml',
+        server: 'https://www.plantuml.com/plantuml',
       })
     },
     lineNumbers: true,
